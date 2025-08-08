@@ -1,4 +1,5 @@
 import pandas as pd
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
@@ -9,12 +10,17 @@ from sklearn.metrics import (
     classification_report
 )
 from sklearn.preprocessing import MinMaxScaler
-import pickle
 
-from featureengineering import feature_engineering  # Your feature engineering file
+from scripts.clean_data import clean_customer_data  # Your cleaning script
+from scripts.detect_churn import detect_churn_from_file  # Your churn detection script
+from scripts.featureengineering import feature_engineering  # Your feature engineering file
+from scripts.make_Consistent import make_consistence  # Your consistency script
 
 # Step 1: Load the dataset
 df = pd.read_csv("cleaned_customer_data_with_churn.csv")
+consistent_df = clean_customer_data(df, 'consistent_data.csv')
+df_cleaned = clean_customer_data(consistent_df, 'cleaned_data.csv')
+df_churned = detect_churn_from_file(df_cleaned)
 
 # Step 2: Separate target variable
 y = df['Churn']
