@@ -286,14 +286,5 @@ style="width:4.00861in;height:0.57292in" /><img src="./k55hixed.png" style="widt
 style="width:3.58875in;height:0.61389in" /><img src="./arnqgbyd.png"
 style="width:6.26805in;height:1.29444in" />
 
-BasicDatabasecreationandmanipulationcommands:
-
-Nowinstall Pythonandthenrunanscriptto checka databaseconnection.
-
-PythonInatallation:
-
-Thisisfinal outputwhichshowsdatabaseconnectedsuccessfully:
-
-Thisisend.
 
 Thank you!
