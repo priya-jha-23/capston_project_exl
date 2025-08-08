@@ -91,5 +91,5 @@ Customer attrition is a major concern in the banking sector. By predicting poten
 ---
 
 **Author:** Priya Jha  
-📧 Email: priyajha28111999@gmail.com  
-📂 [Kaggle Profile](https://www.kaggle.com/datasets/gauravtopre/bank-customer-churn-dataset)
+Email: priyajha28111999@gmail.com  
+
