@@ -39,6 +39,8 @@ Customer attrition is a major concern in the banking sector. By predicting poten
 
 ## Exploratory Data Analysis (EDA)
 - Visualized churn distribution
+- Churn Distribution  
+  ![Churn Distribution(/scripts/eda/Visualization/Data_Overview/Figure_3.png)
 - Feature analysis using:
   - Correlation heatmaps
   - Bar plots for categorical variables
