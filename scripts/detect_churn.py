@@ -1,25 +1,29 @@
 import pandas as pd
 
-# Load the customer data
-df1 = pd.read_csv("cleaned_data.csv")
+def detect_churn_from_file(input_csv="cleaned_data.csv", output_csv="cleaned_data_with_churn.csv"):
+    """
+    Reads customer data from input_csv, applies churn detection logic,
+    adds a 'Churn' column, saves the result to output_csv, and returns the DataFrame.
+    """
+    # Load the customer data
+    df = pd.read_csv(input_csv)
 
-# Apply churn conditions
-def detect_churn(row):
-    # Avoid division by zero
-    if row["Tenure"] == 0:
+    # Define churn condition
+    def detect_churn(row):
+        if row["Tenure"] == 0:
+            return 'No'
+        avg_monthly_spend = row["Balance"] / row["Tenure"]
+        last_known_avg = row["EstimatedSalary"]
+        if row["Tenure"] <= 3 and avg_monthly_spend < 0.5 * last_known_avg:
+            return 'Yes'
         return 'No'
-    avg_monthly_spend = row["Balance"] / row["Tenure"]
-    last_known_avg = row["EstimatedSalary"] 
-    if row["Tenure"] <= 3 and avg_monthly_spend < 0.5 * last_known_avg:
-        return 'Yes'
-    return 'No'
 
+    # Apply churn detection
+    df["Churn"] = df.apply(detect_churn, axis=1)
 
-df1["Churn"] = df1.apply(detect_churn, axis=1)
+    # Save to new file
+    df.to_csv(output_csv, index=False)
+    print(f"Churn column added and saved to {output_csv}")
 
-# Save new CSV with churn
-df1.to_csv("cleaned_data_with_churn.csv", index=False)
-
-
-
-
+    # Return the modified DataFrame
+    return df
